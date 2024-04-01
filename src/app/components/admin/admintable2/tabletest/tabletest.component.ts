@@ -126,7 +126,9 @@ export class TabletestComponent implements AfterViewInit {
       },
     });
     _popup.afterClosed().subscribe((res) => {
-      this.showusersdata();
+      setTimeout(() => {
+        this.showusersdata();
+      }, 1000);
     });
     //console.log('delete');
   }
