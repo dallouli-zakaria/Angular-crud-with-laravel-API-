@@ -36,37 +36,23 @@ export class DeleteComponent {
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     private crud: CrudService,
-    private router: ActivatedRoute,
-    private route: Router,
     public dialogRef: MatDialogRef<TabletestComponent>
   ) {
-    this.userId = parseInt(this.router.snapshot.paramMap.get('id') || '');
-
-    //console.log(this.userId);
-
     this.inputdata = this.data;
     if (this.inputdata.code > 0) {
       this.setdeletedata(this.inputdata.code);
       console.log(this.inputdata.code);
     }
-    //this.delete(this.userId);
-    //this.route.navigate(['/admin']);
   }
 
   delete() {
     this.code = this.inputdata.code;
     this.crud.deleteuser(this.code).subscribe((res) => {});
   }
-  setpopundata(code: any) {
-    this.crud.getUserById(code).subscribe((item) => {
-      this.deletedata = item;
-    });
-  }
 
   setdeletedata(code: any) {
     this.crud.getUserById(code).subscribe((item) => {
       this.deletedata = item;
-      //console.log(this.deletedata);
     });
   }
 }

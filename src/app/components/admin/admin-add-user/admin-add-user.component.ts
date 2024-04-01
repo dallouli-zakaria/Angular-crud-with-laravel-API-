@@ -1,11 +1,4 @@
-import {
-  Component,
-  ElementRef,
-  Inject,
-  NgZone,
-  OnInit,
-  ViewChild,
-} from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatSelectModule } from '@angular/material/select';
@@ -17,18 +10,9 @@ import {
   MatDialogModule,
   MatDialogRef,
 } from '@angular/material/dialog';
-import { Admintable2Component } from '../admintable2/admintable2.component';
 import { CrudService } from '../services/crud.service';
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  ReactiveFormsModule,
-  Validators,
-} from '@angular/forms';
-import { Router } from '@angular/router';
+import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { TabletestComponent } from '../admintable2/tabletest/tabletest.component';
-import { LazyLoadingService } from '../services/lazy-loading.service';
 
 @Component({
   selector: 'app-admin-add-user',
@@ -55,11 +39,7 @@ export class AdminAddUserComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any,
     public dialogRef: MatDialogRef<TabletestComponent>,
     private crud: CrudService,
-    public formBiulder: FormBuilder,
-    private router: Router,
-    private ngZone: NgZone,
-    private lazyload: LazyLoadingService,
-    private route: Router
+    public formBiulder: FormBuilder
   ) {
     this.applyForm = this.formBiulder.group({
       name: [''],
@@ -94,16 +74,4 @@ export class AdminAddUserComponent implements OnInit {
       });
     });
   }
-  save() {
-    this.crud.adduser(this.applyForm.value).subscribe((res) => {});
-  }
-  f() {
-    console.log(this.applyForm.value);
-  }
-
-  // applyForm = new FormGroup({
-  //   name: new FormControl(''),
-  //   price: new FormControl(''),
-  //   description: new FormControl(''),
-  // });
 }

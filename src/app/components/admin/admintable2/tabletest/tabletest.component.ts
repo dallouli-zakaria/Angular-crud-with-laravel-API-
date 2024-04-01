@@ -1,9 +1,5 @@
 import { AfterViewInit, Component, Inject, ViewChild } from '@angular/core';
-import {
-  MatTableModule,
-  MatTable,
-  MatTableDataSource,
-} from '@angular/material/table';
+import { MatTableModule, MatTableDataSource } from '@angular/material/table';
 import { MatPaginatorModule, MatPaginator } from '@angular/material/paginator';
 import { MatSortModule, MatSort } from '@angular/material/sort';
 import { CrudService } from '../../services/crud.service';
@@ -16,7 +12,7 @@ import { MatFormField, MatLabel } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { ActivatedRoute, Route, Router, RouterModule } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import {
   MatDialog,
   MatDialogRef,
@@ -27,7 +23,6 @@ import {
   MAT_DIALOG_DATA,
 } from '@angular/material/dialog';
 import { DeleteComponent } from '../delete/delete.component';
-import { AddComponent } from '../add/add.component';
 import { AdminAddUserComponent } from '../../admin-add-user/admin-add-user.component';
 import { UpdateComponent } from '../update/update.component';
 @Component({
@@ -73,8 +68,6 @@ export class TabletestComponent implements AfterViewInit {
     @Inject(MAT_DIALOG_DATA) public data: any,
     public dialogRef: MatDialogRef<TabletestComponent>,
     private crud: CrudService,
-    private router: ActivatedRoute,
-    private route: Router,
     public dialog: MatDialog
   ) {}
 
@@ -92,11 +85,7 @@ export class TabletestComponent implements AfterViewInit {
   }
 
   delete(code: any) {
-    this.userId = parseInt(this.router.snapshot.paramMap.get('id') || '');
     this.openDialog(code, 'delete user', 0, 0);
-
-    //console.log(code);
-    //this.crud.deleteuser(this.userId);
   }
   edit(code: any) {
     this.openDialog3(code, 'edit user', 0, 0);
@@ -130,7 +119,6 @@ export class TabletestComponent implements AfterViewInit {
         this.showusersdata();
       }, 1000);
     });
-    //console.log('delete');
   }
 
   openDialog2(

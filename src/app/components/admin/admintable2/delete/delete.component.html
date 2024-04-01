@@ -1,8 +1,14 @@
-<h2 mat-dialog-title>Delete User</h2>
-<mat-dialog-content> Would you like to delete this user ? </mat-dialog-content>
+<h2 mat-dialog-title>Delete file</h2>
+<mat-dialog-content> Would you like to delete ? </mat-dialog-content>
 <mat-dialog-actions>
-  <button mat-raised-button color="warn" cdkFocusInitial (click)="delete()">
+  <button
+    mat-button
+    color="warn"
+    mat-dialog-close
+    cdkFocusInitial
+    (click)="delete()"
+  >
     Delete
   </button>
-  <button mat-raised-button mat-dialog-close>Cancel</button>
+  <button mat-button mat-dialog-close>No</button>
 </mat-dialog-actions>
