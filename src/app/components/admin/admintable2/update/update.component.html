@@ -1,0 +1,40 @@
+<h2 mat-dialog-title>Edit User</h2>
+<form [formGroup]="applyForm" (submit)="submitApplication()">
+  <mat-dialog-content class="mat-dialog">
+    <p>
+      <mat-form-field hintLabel="Max 10 characters">
+        <mat-label>Name</mat-label>
+        <input matInput #input maxlength="10" formControlName="name" />
+        <mat-hint align="end">{{ input.value.length }}/10</mat-hint>
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field hintLabel="Max 10 characters">
+        <mat-label>Price</mat-label>
+        <input matInput #input maxlength="10" formControlName="price" />
+        <mat-hint align="end">{{ input.value.length }}/10</mat-hint>
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field>
+        <mat-label>description</mat-label>
+        <input matInput required formControlName="description" />
+
+        <mat-error></mat-error>
+      </mat-form-field>
+    </p>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button
+      type="submit"
+      class="primary"
+      mat-button
+      cdkFocusInitial
+      color="primary"
+      mat-dialog-close
+    >
+      edit
+    </button>
+    <button mat-button mat-dialog-close>Cancel</button>
+  </mat-dialog-actions>
+</form>

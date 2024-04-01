@@ -1,0 +1,7 @@
+funct(){
+
+}
+
+<div>
+<app-table-test></app-table-test>
+<div>
