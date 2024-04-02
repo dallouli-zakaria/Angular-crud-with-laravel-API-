@@ -1,11 +1,4 @@
-import {
-  Component,
-  ElementRef,
-  Inject,
-  NgZone,
-  OnInit,
-  ViewChild,
-} from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { ReactiveFormsModule, FormGroup, FormBuilder } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -18,9 +11,7 @@ import {
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
-import { Router } from '@angular/router';
 import { CrudService } from '../../services/crud.service';
-import { LazyLoadingService } from '../../services/lazy-loading.service';
 import { TabletestComponent } from '../tabletest/tabletest.component';
 
 @Component({
@@ -48,11 +39,7 @@ export class UpdateComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any,
     public dialogRef: MatDialogRef<TabletestComponent>,
     private crud: CrudService,
-    public formBiulder: FormBuilder,
-    private router: Router,
-    private ngZone: NgZone,
-    private lazyload: LazyLoadingService,
-    private route: Router
+    public formBiulder: FormBuilder
   ) {
     this.applyForm = this.formBiulder.group({
       name: [''],
@@ -88,12 +75,6 @@ export class UpdateComponent implements OnInit {
         description: this.editdata.description,
       });
     });
-  }
-  save() {
-    this.crud.adduser(this.applyForm.value).subscribe((res) => {});
-  }
-  f() {
-    console.log(this.applyForm.value);
   }
 
   // applyForm = new FormGroup({

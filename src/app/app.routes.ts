@@ -5,7 +5,6 @@ import { BooksComponent } from './components/books/books.component';
 import { TabletestComponent } from './components/admin/admintable2/tabletest/tabletest.component';
 import { DeleteComponent } from './components/admin/admintable2/delete/delete.component';
 import { UpdateComponent } from './components/admin/admintable2/update/update.component';
-import { AddComponent } from './components/admin/admintable2/add/add.component';
 
 export const routes: Routes = [
   { path: 'users', component: UsersComponent },

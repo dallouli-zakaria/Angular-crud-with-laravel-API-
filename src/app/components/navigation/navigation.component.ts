@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, HostBinding, inject, OnInit } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { AsyncPipe, CommonModule } from '@angular/common';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -11,6 +11,9 @@ import { map, shareReplay } from 'rxjs/operators';
 import { DashboardComponent } from '../dashboard/dashboard.component';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { OverlayContainer } from '@angular/cdk/overlay';
 
 @Component({
   selector: 'app-navigation',
@@ -31,11 +34,13 @@ import { MatMenuModule } from '@angular/material/menu';
     MatButtonModule,
     MatIconModule,
     MatMenuModule,
+    MatSlideToggleModule,
+    ReactiveFormsModule,
   ],
 })
-export class NavigationComponent {
+export class NavigationComponent implements OnInit {
   private breakpointObserver = inject(BreakpointObserver);
-
+  constructor(private overlay: OverlayContainer) {}
   isHandset$: Observable<boolean> = this.breakpointObserver
     .observe(Breakpoints.Handset)
     .pipe(
@@ -50,5 +55,19 @@ export class NavigationComponent {
     } else {
       this.option = false;
     }
+  }
+  toggleControl = new FormControl(false);
+  @HostBinding('class') ClassName = '';
+  darkClassName = 'theme-dark';
+  lightClassName = 'theme-light';
+  ngOnInit() {
+    this.toggleControl.valueChanges.subscribe((darkMode) => {
+      this.ClassName = darkMode ? this.darkClassName : this.lightClassName;
+      if (darkMode) {
+        this.overlay.getContainerElement().classList.add(this.darkClassName);
+      } else {
+        this.overlay.getContainerElement().classList.add(this.lightClassName);
+      }
+    });
   }
 }

@@ -47,12 +47,7 @@ export class AdminAddUserComponent implements OnInit {
       description: [''],
     });
   }
-  ngOnInit(): void {
-    this.inputdata = this.data;
-    if (this.inputdata.code > 0) {
-      this.setpopundata(this.inputdata.code);
-    }
-  }
+  ngOnInit(): void {}
 
   submitApplication() {
     this.crud.adduser(this.applyForm.value).subscribe(
@@ -63,15 +58,5 @@ export class AdminAddUserComponent implements OnInit {
         console.log(err);
       }
     );
-  }
-  setpopundata(code: any) {
-    this.crud.getUserById(code).subscribe((item) => {
-      this.editdata = item;
-      this.applyForm.setValue({
-        name: this.editdata.name,
-        price: this.editdata.price,
-        description: this.editdata.description,
-      });
-    });
   }
 }

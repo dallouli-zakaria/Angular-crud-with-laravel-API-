@@ -1,0 +1,26 @@
+<mat-card>
+  <mat-card-header>
+    <button mat-raised-button color="primary">Add Book</button>
+  </mat-card-header>
+
+  <mat-card-content>
+    <div class="list-wrapper">
+      <div cdkDropList class="list" (cdkDropListDropped)="drop($event)">
+        @for (movie of movies; track movie) {
+        <div class="example-box" cdkDrag>
+          {{ movie.title }}
+          <img *cdkDragPreview [src]="movie.poster" [alt]="movie.title" />
+        </div>
+        }
+      </div>
+      <div cdkDropList class="list" (cdkDropListDropped)="drop($event)">
+        @for (movie of movies; track movie) {
+        <div class="example-box" cdkDrag>
+          {{ movie.title }}
+          <img *cdkDragPreview [src]="movie.poster" [alt]="movie.title" />
+        </div>
+        }
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>
