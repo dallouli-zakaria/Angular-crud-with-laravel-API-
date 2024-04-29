@@ -16,5 +16,5 @@
   z-index: 1;
 }
 mat-toolbar{
-  justify-content: space-between;
+  justify-content: right;
 }

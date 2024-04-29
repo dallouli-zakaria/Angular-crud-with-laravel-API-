@@ -16,26 +16,36 @@
   </mat-sidenav>
 
   <mat-sidenav-content>
-    <div>
+    
+ 
+      
       <mat-toolbar color="primary">
+
         <button
-          type="button"
-          aria-label="Toggle sidenav"
-          mat-icon-button
-          (click)="drawer.toggle()"
-        >
-          <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
-        </button>
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+      >
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+  
         <span class="left-span">
           <mat-slide-toggle [formControl]="toggleControl"
             ><mat-icon>brightness_4</mat-icon></mat-slide-toggle
           >
-          <button type="button" mat-icon-button>
-            <mat-icon>account_circle</mat-icon>
-          </button>
         </span>
+
+        <mat-accordion class="accordion-left">
+          <mat-expansion-panel hideToggle>
+            <mat-expansion-panel-header>
+              <mat-panel-title> f </mat-panel-title>
+            </mat-expansion-panel-header>
+            <p>fff.</p>
+          </mat-expansion-panel>
+        </mat-accordion>
       </mat-toolbar>
-    </div>
+
     <!-- Add Content Here -->
 
     <router-outlet></router-outlet>

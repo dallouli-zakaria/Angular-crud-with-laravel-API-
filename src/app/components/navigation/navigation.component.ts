@@ -14,7 +14,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { OverlayContainer } from '@angular/cdk/overlay';
-
+import { MatExpansionModule } from '@angular/material/expansion';
 @Component({
   selector: 'app-navigation',
   templateUrl: './navigation.component.html',
@@ -32,13 +32,14 @@ import { OverlayContainer } from '@angular/cdk/overlay';
     RouterOutlet,
     CommonModule,
     MatButtonModule,
-    MatIconModule,
+    MatExpansionModule,
     MatMenuModule,
     MatSlideToggleModule,
     ReactiveFormsModule,
   ],
 })
 export class NavigationComponent implements OnInit {
+  panelOpenState = false;
   private breakpointObserver = inject(BreakpointObserver);
   constructor(private overlay: OverlayContainer) {}
   isHandset$: Observable<boolean> = this.breakpointObserver
@@ -70,4 +71,8 @@ export class NavigationComponent implements OnInit {
       }
     });
   }
+  // tr: any;
+  // lent() {
+  //   return (this.toggleControl = this.tr.invalid(2000));
+  // }
 }

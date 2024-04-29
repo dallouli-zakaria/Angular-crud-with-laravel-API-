@@ -1,0 +1,31 @@
+<div class="container">
+    <mat-card>
+      <mat-card-title align="center">Login</mat-card-title>
+      <mat-card-content>
+        <form
+          class="example-form"
+          [formGroup]="applyForm"
+          (submit)="submitApplication($event)"
+        >
+          <mat-form-field class="example-full-width">
+            <mat-label>Email</mat-label>
+            <input
+              type="email"
+              matInput
+              placeholder="name@example.com"
+              formControlName="email"
+            />
+          </mat-form-field>
+          <mat-form-field class="example-full-width">
+            <mat-label>Password</mat-label>
+            <input type="password" matInput formControlName="password" />
+          </mat-form-field>
+          <mat-card-actions align="end">
+            <a routerLink="/auth" mat-button>Create Account</a>
+            <button mat-raised-button color="primary" type="submit">Login</button>
+          </mat-card-actions>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  

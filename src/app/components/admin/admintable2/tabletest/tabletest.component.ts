@@ -25,6 +25,8 @@ import {
 import { DeleteComponent } from '../delete/delete.component';
 import { AdminAddUserComponent } from '../../admin-add-user/admin-add-user.component';
 import { UpdateComponent } from '../update/update.component';
+import { AuthService } from '../../services/auth.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 @Component({
   selector: 'app-tabletest',
   templateUrl: './tabletest.component.html',
@@ -58,6 +60,7 @@ export class TabletestComponent implements AfterViewInit {
   dataSource: any;
   userlist!: User[];
   userId!: Number;
+  m3:any='';
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
@@ -68,8 +71,12 @@ export class TabletestComponent implements AfterViewInit {
     @Inject(MAT_DIALOG_DATA) public data: any,
     public dialogRef: MatDialogRef<TabletestComponent>,
     private crud: CrudService,
-    public dialog: MatDialog
-  ) {}
+    public dialog: MatDialog,
+    private authservice:AuthService,
+    private snackBar: MatSnackBar
+  ) {
+    this.getUser2()
+  }
 
   ngAfterViewInit(): void {
     this.showusersdata();
@@ -86,6 +93,7 @@ export class TabletestComponent implements AfterViewInit {
 
   delete(code: any) {
     this.openDialog(code, 'delete user', 0, 0);
+    
   }
   edit(code: any) {
     this.openDialog3(code, 'edit user', 0, 0);
@@ -138,6 +146,7 @@ export class TabletestComponent implements AfterViewInit {
     });
     _popup2.afterClosed().subscribe((res) => {
       setTimeout(() => {
+
         this.showusersdata();
       }, 1000);
     });
@@ -170,5 +179,21 @@ export class TabletestComponent implements AfterViewInit {
       this.editdata = item;
       this.applyForm.setValue({ name: this.editdata.name });
     });
+  }
+
+  logout(){
+    this.authservice.logout();
+  }
+  getUser2(){
+
+    this.authservice.getUser().subscribe((res)=>{
+     
+      
+      //console.log(res.user);
+      this.m3=res.user;
+      return this.m3;
+    })
+    
+
   }
 }
