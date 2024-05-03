@@ -3,6 +3,7 @@ import { inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { jwtDecode } from 'jwt-decode';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable({
   providedIn: 'root',
@@ -11,8 +12,10 @@ export class AuthService {
   private isAuthenticatedSubject = new BehaviorSubject<boolean>(false);
   private http = inject(HttpClient);
   private router = inject(Router);
+  private snackBar= inject(MatSnackBar);
   private loggedUser?: string;
   private readonly JWT_TOKEN = 'JWT_TOKEN';
+  
   API_URL2: any = 'http://127.0.0.1:8000/api/auth';
   tokenn: any;
   constructor() {}
@@ -53,6 +56,7 @@ export class AuthService {
     password: string,
     password_confirmation: string
   ): Observable<any> {
+
     // return this.http.post(this.API_URL + 'signup', {
     return this.http.post(this.API_URL2 + '/register', {
       name,
@@ -77,8 +81,12 @@ export class AuthService {
     localStorage.removeItem(this.JWT_TOKEN);
     this.isAuthenticatedSubject.next(false);
     this.router.navigate(['/login']);
+    
+
+
   }
   getUser():Observable<any>{
     return this.http.get(`${this.API_URL2}/user`);
   }
+
 }

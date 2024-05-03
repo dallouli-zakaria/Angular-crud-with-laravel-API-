@@ -183,12 +183,15 @@ export class TabletestComponent implements AfterViewInit {
 
   logout(){
     this.authservice.logout();
+    this.snackBar.open('Logged out !', 'Close', {
+      duration: 3000,
+    });
+    
   }
   getUser2(){
 
     this.authservice.getUser().subscribe((res)=>{
-     
-      
+
       //console.log(res.user);
       this.m3=res.user;
       return this.m3;

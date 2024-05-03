@@ -13,6 +13,7 @@ import {
 } from '@angular/material/dialog';
 import { TabletestComponent } from '../tabletest/tabletest.component';
 import { MatButton } from '@angular/material/button';
+import { MatSnackBar } from '@angular/material/snack-bar';
 @Component({
   selector: 'app-delete',
   standalone: true,
@@ -33,10 +34,12 @@ export class DeleteComponent {
   deletedata: any;
   inputdata!: any;
   code!: any;
+
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     private crud: CrudService,
-    public dialogRef: MatDialogRef<TabletestComponent>
+    public dialogRef: MatDialogRef<TabletestComponent>,
+    private snackBar :MatSnackBar
   ) {
     this.inputdata = this.data;
     if (this.inputdata.code > 0) {
@@ -47,7 +50,11 @@ export class DeleteComponent {
 
   delete() {
     this.code = this.inputdata.code;
-    this.crud.deleteuser(this.code).subscribe((res) => {});
+    this.crud.deleteuser(this.code).subscribe((res) => {
+      this.snackBar.open('deleted successfully', 'Close', {
+        duration: 3000,
+      });
+    });
   }
 
   setdeletedata(code: any) {

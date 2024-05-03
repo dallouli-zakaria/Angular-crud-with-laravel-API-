@@ -13,6 +13,7 @@ import {
 import { CrudService } from '../services/crud.service';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { TabletestComponent } from '../admintable2/tabletest/tabletest.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-admin-add-user',
@@ -35,11 +36,13 @@ export class AdminAddUserComponent implements OnInit {
   applyForm: FormGroup;
   editdata: any;
   inputdata: any;
+
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     public dialogRef: MatDialogRef<TabletestComponent>,
     private crud: CrudService,
-    public formBiulder: FormBuilder
+    public formBiulder: FormBuilder,
+    private snackBar :MatSnackBar
   ) {
     this.applyForm = this.formBiulder.group({
       name: [''],
@@ -52,6 +55,9 @@ export class AdminAddUserComponent implements OnInit {
   submitApplication() {
     this.crud.adduser(this.applyForm.value).subscribe(
       (res) => {
+        this.snackBar.open('user added succeffully', 'Close', {
+          duration: 3000,
+        });
         console.log(res);
       },
       (err) => {

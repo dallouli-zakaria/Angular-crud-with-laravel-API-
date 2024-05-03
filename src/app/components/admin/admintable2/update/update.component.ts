@@ -13,6 +13,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { CrudService } from '../../services/crud.service';
 import { TabletestComponent } from '../tabletest/tabletest.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-admin-add-user',
@@ -39,7 +40,8 @@ export class UpdateComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any,
     public dialogRef: MatDialogRef<TabletestComponent>,
     private crud: CrudService,
-    public formBiulder: FormBuilder
+    public formBiulder: FormBuilder,
+    private snackBar :MatSnackBar
   ) {
     this.applyForm = this.formBiulder.group({
       name: [''],
@@ -57,6 +59,9 @@ export class UpdateComponent implements OnInit {
   submitApplication() {
     this.crud.updateuser(this.applyForm.value, this.inputdata.code).subscribe(
       (res) => {
+        this.snackBar.open('updated successfully', 'Close', {
+          duration: 3000,
+        });
         //console.log(res);
         this.dialogRef.close(true); // Close the dialog with a success flag
       },
